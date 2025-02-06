@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { MagnifyingGlassIcon, GlobeAltIcon, Bars3Icon, UserCircleIcon, UsersIcon } from "@heroicons/react/24/solid";
+import { MagnifyingGlassIcon, GlobeAltIcon, Bars3Icon, UserCircleIcon } from "@heroicons/react/24/solid";
 
 function Header() {
   return (
