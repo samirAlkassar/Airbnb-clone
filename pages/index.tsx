@@ -1,7 +1,6 @@
 import Banner from "../components/Banner";
 import Header from "../components/Header";
 import Head from "next/head";
-import "./globals.css"
 import { exploreData,cardsData } from "../constants/exploreData";
 import SmallCard from "../components/SmallCard";
 import NextLogo from "./favicon.ico"
