@@ -1,4 +1,3 @@
-import { Children } from "react"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import { useRouter } from "next/router"
@@ -8,7 +7,7 @@ import InformationCard from "../components/InformationCard"
 
 function Search() {
     const router = useRouter();
-    const {location="Loading...", startDate="00", endDate="00", numberOfGuests=0}:any = router.query;
+    const {location="Loading...", startDate="00", endDate="00", numberOfGuests=0}: { location?: string; startDate?: string; endDate?: string; numberOfGuests?: number } = router.query;
 
     const formatedStartDate = format(new Date(startDate), "dd MMM yy");
     const formatedEndDate = format(new Date(endDate), "dd MMM yy");
@@ -23,11 +22,11 @@ function Search() {
                     <h1 className="text-3xl font-semibold mt-1 mb-6">Stays in {location}</h1>
 
                     <div className="hidden lg:inline-flex mb-5 space-x-3 text-gray-800 whitespace-nowrap">
-                        <Elements>Cancellation Flexobolity</Elements>
-                        <Elements>Type of Place</Elements>
-                        <Elements>Price</Elements>
-                        <Elements>Rooms and Beds</Elements>
-                        <Elements>More filters</Elements>
+                        <Elements text="Cancellation Flexobolity"/>
+                        <Elements text="Type of Place"/>
+                        <Elements text="Price"/>
+                        <Elements text="Rooms and Beds"/>
+                        <Elements text="More filters"/>
                     </div>
                 </section>
 
@@ -47,15 +46,14 @@ function Search() {
         </div>
     )
 }
+
 type Props = {
-    children: React.ReactNode;
+    text: string;
 };
 
-function Elements(props: Props) {
+function Elements({ text }: Props) {
     return (
-        <div>
-            <p className="button">{props.children}</p>
-        </div>
+            <p className="button">{text}</p>
     );
 }
 

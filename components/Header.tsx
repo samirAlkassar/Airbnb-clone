@@ -7,7 +7,7 @@ import { DateRangePicker } from 'react-date-range';
 import { useRouter } from "next/router";
 
 
-function Header({placeholder}:any) {
+function Header({ placeholder }: { placeholder?: string }) {
     const [searchInput, setSearchInput] = useState<string>("");
     const [startDate, setStartDate] = useState<Date>(new Date());
     const [endDate, setEndDate] = useState<Date>(new Date());
@@ -27,7 +27,7 @@ function Header({placeholder}:any) {
         console.log(searchInput)
     }
 
-    const handleDataSelect = (ranges: any) => {
+    const handleDataSelect = (ranges: { selection: { startDate: Date, endDate: Date } }) => {
         const { selection } = ranges;
         if (selection) {
             setStartDate(selection.startDate);
