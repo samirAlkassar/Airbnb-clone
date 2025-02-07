@@ -5,6 +5,7 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRangePicker } from 'react-date-range';
 import { useRouter } from "next/router";
+import { RangeKeyDict } from "react-date-range"; // Import the correct type
 
 
 function Header({ placeholder }: { placeholder?: string }) {
@@ -27,11 +28,11 @@ function Header({ placeholder }: { placeholder?: string }) {
         console.log(searchInput)
     }
 
-    const handleDataSelect = (ranges: { selection: { startDate: Date, endDate: Date } }) => {
-        const { selection } = ranges;
+    const handleDataSelect = (rangesByKey: RangeKeyDict) => {
+        const selection = rangesByKey.selection;
         if (selection) {
-            setStartDate(selection.startDate);
-            setEndDate(selection.endDate);
+            setStartDate(selection.startDate ?? new Date()); // Fallback to current date
+            setEndDate(selection.endDate ?? new Date());     // Fallback to current date
         }
     };
 
@@ -88,11 +89,11 @@ function Header({ placeholder }: { placeholder?: string }) {
             </div>
             {searchInput &&
                 <div className="flex flex-col mt-2 m-auto col-span-3">
-                    <DateRangePicker
-                        ranges={[selectionRange]}
-                        minDate={new Date()}
-                        rangeColors={["#fd5b61"]}
-                        onChange={handleDataSelect} />
+                        <DateRangePicker
+                            ranges={[selectionRange]}
+                            minDate={new Date()}
+                            rangeColors={["#fd5b61"]}
+                            onChange={handleDataSelect}/>
                     <div className="flex items-center border-b">
                         <h2 className="text-2xl flex-grow">Number Of Guests</h2>
                         <UsersIcon className="h-5" />
